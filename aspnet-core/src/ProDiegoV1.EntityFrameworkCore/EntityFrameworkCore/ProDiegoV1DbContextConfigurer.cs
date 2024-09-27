@@ -7,12 +7,12 @@ namespace ProDiegoV1.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<ProDiegoV1DbContext> builder, string connectionString)
         {
-            builder.UseSqlServer(connectionString);
+            builder.UseNpgsql(connectionString);
         }
 
         public static void Configure(DbContextOptionsBuilder<ProDiegoV1DbContext> builder, DbConnection connection)
         {
-            builder.UseSqlServer(connection);
+            builder.UseNpgsql(connection);
         }
     }
 }
