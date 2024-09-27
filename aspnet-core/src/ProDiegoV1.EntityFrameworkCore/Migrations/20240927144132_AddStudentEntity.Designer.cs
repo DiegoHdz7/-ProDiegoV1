@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProDiegoV1.EntityFrameworkCore;
@@ -11,9 +12,11 @@ using ProDiegoV1.EntityFrameworkCore;
 namespace ProDiegoV1.Migrations
 {
     [DbContext(typeof(ProDiegoV1DbContext))]
-    partial class ProDiegoV1DbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927144132_AddStudentEntity")]
+    partial class AddStudentEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
