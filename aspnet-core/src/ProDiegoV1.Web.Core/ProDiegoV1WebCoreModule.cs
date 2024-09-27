@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
-using Abp.AspNetCore.SignalR;
+//using Abp.AspNetCore.SignalR;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
@@ -20,7 +20,7 @@ namespace ProDiegoV1
          typeof(ProDiegoV1ApplicationModule),
          typeof(ProDiegoV1EntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
-        ,typeof(AbpAspNetCoreSignalRModule)
+        //,typeof(AbpAspNetCoreSignalRModule)
      )]
     public class ProDiegoV1WebCoreModule : AbpModule
     {
