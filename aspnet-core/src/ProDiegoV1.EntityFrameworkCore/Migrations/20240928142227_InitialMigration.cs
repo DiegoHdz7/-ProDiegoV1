@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -449,17 +450,21 @@ namespace ProDiegoV1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "Colleges",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "text", nullable: true),
-                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
-                    ProgramName = table.Column<string>(type: "text", nullable: true),
-                    DoB = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    GPS = table.Column<string>(type: "text", nullable: true),
+                    Latitude = table.Column<string>(type: "text", nullable: true),
+                    Longitude = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    DiegoString = table.Column<string>(type: "text", nullable: true),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    StudentIds = table.Column<List<int>>(type: "integer[]", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -470,7 +475,7 @@ namespace ProDiegoV1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_Colleges", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -788,6 +793,38 @@ namespace ProDiegoV1.Migrations
                         name: "FK_AbpWebhookSendAttempts_AbpWebhookEvents_WebhookEventId",
                         column: x => x.WebhookEventId,
                         principalTable: "AbpWebhookEvents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    ProgramName = table.Column<string>(type: "text", nullable: true),
+                    DoB = table.Column<string>(type: "text", nullable: true),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    CollegeId = table.Column<int>(type: "integer", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_Colleges_CollegeId",
+                        column: x => x.CollegeId,
+                        principalTable: "Colleges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1244,6 +1281,11 @@ namespace ProDiegoV1.Migrations
                 name: "IX_AbpWebhookSendAttempts_WebhookEventId",
                 table: "AbpWebhookSendAttempts",
                 column: "WebhookEventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_CollegeId",
+                table: "Students",
+                column: "CollegeId");
         }
 
         /// <inheritdoc />
@@ -1347,6 +1389,9 @@ namespace ProDiegoV1.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpWebhookEvents");
+
+            migrationBuilder.DropTable(
+                name: "Colleges");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicProperties");

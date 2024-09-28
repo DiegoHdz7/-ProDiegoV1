@@ -1,11 +1,6 @@
-﻿using Abp.Application.Services.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 
-namespace ProDiegoV1.students.Dto
+namespace ProDiegoV1.Students.Dto
 {
     public class PagedStudentResultRequestDto : PagedResultRequestDto
     {
@@ -13,3 +8,4 @@ namespace ProDiegoV1.students.Dto
         public bool? IsActive { get; set; }
     }
 }
+

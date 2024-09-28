@@ -1,13 +1,10 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.AutoMapper;
-using ProDiegoV1.models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using ProDiegoV1.Colleges.Dto;
+using ProDiegoV1.models;
 
-namespace ProDiegoV1.students.Dto
+namespace ProDiegoV1.Students.Dto
 {
     [AutoMapFrom(typeof(Student))]
     public class StudentDto : EntityDto<int>
@@ -19,7 +16,11 @@ namespace ProDiegoV1.students.Dto
         public string ProgramName { get; set; }
         public string DoB { get; set; }
         public bool IsActive { get; set; }
-        ///Dto.cs.fields1///
+
+        public int CollegeId { get; set; }
+
+        public  CollegeDto College { get; set; }
+///Dto.cs.fields1///
 
         public DateTime CreationTime { get; set; }
 
@@ -27,3 +28,4 @@ namespace ProDiegoV1.students.Dto
 
     }
 }
+

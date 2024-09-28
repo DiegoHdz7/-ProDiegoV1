@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ProDiegoV1.models
 {
@@ -26,6 +27,14 @@ namespace ProDiegoV1.models
         public string DoB { get; set; }
 
         public bool IsActive { get; set; }
+
+        //Link to Other entities
+        // Foreign Key
+        public int CollegeId { get; set; }
+
+        
+        // Navigation Property
+        public College College { get; set; }
 
     }
 }
